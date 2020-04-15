@@ -29,13 +29,14 @@
                             <a href="{{ route('tasks.create', ['id' => $current_folder_id]) }}" class="btn btn-default btn-block">タスクを追加する</a>
                         </div>
                     </div>
-                    <table class="table">
+                    <table class="table" style="table-layout:fixed;">
                         <thead>
                         <tr>
-                            <th>タイトル</th>
-                            <th>状態</th>
-                            <th>期限</th>
-                            <th></th>
+                            <th style="width:50%;">タイトル</th>
+                            <th style="width:10%;">状態</th>
+                            <th style="width:20%;">期限</th>
+                            <th style="width:10%;"></th>
+                            <th style="width:10%;"></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -44,7 +45,14 @@
                                 <td>{{$task->title}}</td>
                                 <td><span class="label {{$task->status_class}}">{{ $task->status_label }}</span></td>
                                 <td>{{$task->formatted_due_date}}</td>
-                                <td><a href="{{ route('tasks.edit', ['id' => $task->folder_id, 'task_id' => $task->id] )}}">編集</a></td>
+                                <td style="text-align: right;"><button class="btn btn-primary"><a href="{{ route('tasks.edit', ['id' => $task->folder_id, 'task_id' => $task->id] )}}" style="color: white;">編集</a></button></td>
+                                <td style="text-align: right;">
+                                  <form action="{{ route('tasks.delete', ['id' => $task->folder_id, 'task_id' => $task->id] )}}" method="post" name="deleteTask">
+                                  @csrf
+                                    <button type="submit" class="btn btn-primary" id="delete" onclick='return confirm("本当に削除しますか？")'>削除</button>
+                                    <!-- <a href="javascript: deleteTask.submit">削除</a> -->
+                                  </form>
+                                </td>
                             </tr>
                         @endforeach    
                         </tbody>

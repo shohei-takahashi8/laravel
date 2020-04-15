@@ -118,4 +118,22 @@ class TaskController extends Controller
         }
     }
 
+
+    //タスク削除機能
+    public function delete(int $id, int $task_id) {
+        $current_folder = Folder::find($id);
+        $task = Task::find($task_id);
+
+        $this->checkExistFolder($current_folder);
+        $this->checkExistTask($task);
+        $this->checkAuthority(Auth::user()->id, $current_folder->user_id);
+        $this->checkRelation($current_folder->id, $task->folder_id);
+        
+        $task->delete();
+
+        return redirect()->route('tasks.index',[
+            'id' => $current_folder->id,
+        ]);
+    }
+
 }

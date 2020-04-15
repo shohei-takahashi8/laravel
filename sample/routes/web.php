@@ -32,5 +32,9 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/folders/{id}/tasks/{task_id}/edit', 'TaskController@showEditForm')->name('tasks.edit');
     Route::post('/folders/{id}/tasks/{task_id}/edit', 'TaskController@edit');
 
+    //getの場合はtask一覧画面へ戻す
+    Route::get('/folders/{id}/tasks/{task_id}/delete', 'TaskController@index');
+    Route::post('/folders/{id}/tasks/{task_id}/delete', 'TaskController@delete')->name('tasks.delete');
+
 
 });
