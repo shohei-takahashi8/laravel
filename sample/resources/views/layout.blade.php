@@ -7,6 +7,7 @@
   <title>ToDo App</title>
   @yield('styles')
   <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 <body>
 <header>
@@ -14,6 +15,9 @@
     <a class="my-navbar-brand" href="/">ToDo App</a>
     <div class="my-navbar-control">
       @if(Auth::check())
+        <a href="{{ route('calendars.index') }}" class="my-navbar-item calendar-text">カレンダー</a>
+        <a href="{{ route('calendars.index') }}" class="my-navbar-brand calendar-icon"><i class="fas fa-calendar-alt"></i></a>
+        |
         <span class="my-navbar-item">ようこそ、{{ Auth::user()->name }}さん</span>
         |
         <a href="#" id="logout" class="my-navbar-item">ログアウト</a>

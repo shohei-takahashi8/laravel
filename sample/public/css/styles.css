@@ -33,12 +33,16 @@ a.my-navbar-item:hover {
   color: #ffffff;
 }
 
-.table td:nth-child(2),
-.table td:nth-child(3),
-.table td:nth-child(4),
-.table td:nth-child(5){
+.table-task td:nth-child(2),
+.table-task td:nth-child(3),
+.table-task td:nth-child(4),
+.table-task td:nth-child(5){
   white-space: nowrap;
   width: 1px;
+}
+
+.table td {
+  overflow: auto;
 }
 
 
@@ -46,3 +50,24 @@ a.my-navbar-item:hover {
 .form-control[readonly] {
   background-color: #fff;
 }
+
+.folder-btn {
+  margin: 5px 0;
+}
+
+
+.calendar-icon {
+  display: none;
+}
+
+
+@media (max-width: 480px) {
+
+  .calendar-icon {
+    display: inline-block;
+  }
+  .calendar-text {
+    display: none;
+  }
+}
+

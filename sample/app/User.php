@@ -46,4 +46,8 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token) {
         Mail::to($this)->send(new ResetPassword($token));
     }
+
+    public function tasks() {
+        return $this->hasManyThrough('App\Task', 'App\Folder');
+    }
 }

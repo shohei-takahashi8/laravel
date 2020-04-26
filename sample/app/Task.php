@@ -8,9 +8,9 @@ use Carbon\Carbon;
 class Task extends Model
 {
     const STATUS = [
-        1 => ['label' => '未着手', 'class' => 'label-danger'],
-        2 => ['label' => '着手中', 'class' => 'label-info'],
-        3 => ['label' => '完了', 'class' => ''],
+        1 => ['label' => '未着手', 'class' => 'label-danger', 'class2' => 'text-danger'],
+        2 => ['label' => '着手中', 'class' => 'label-info', 'class2' => 'text-info'],
+        3 => ['label' => '完了', 'class' => '', 'class2' => 'text-muted'],
     ];
 
     public function getStatusLabelAttribute() {
@@ -31,6 +31,16 @@ class Task extends Model
         }
 
         return self::STATUS[$status]['class'];
+    }
+
+    public function getStatusClass2Attribute() {
+        $status = $this->attributes['status'];
+
+        if(!isset(self::STATUS[$status])) {
+            return '';
+        }
+
+        return self::STATUS[$status]['class2'];
     }
 
     public function getFormattedDueDateAttribute() {

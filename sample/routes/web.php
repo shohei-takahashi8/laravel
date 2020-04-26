@@ -26,15 +26,27 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/folders/create', 'FolderController@showCreateForm')->name('folders.create');
     Route::post('/folders/create', 'FolderController@create');
 
+    //フォルダ削除
+    Route::get('/folders/{id}/delete', 'TaskController@index');
+    Route::post('/folders/{id}/delete', 'FolderController@delete')->name('folders.delete');
+
+    //フォルダ編集
+    Route::get('/folders/{id}/edit', 'FolderController@showEditForm')->name('folders.edit');
+    Route::post('/folders/{id}/edit', 'FolderController@edit');
+
+
     Route::get('/folders/{id}/tasks/create', 'TaskController@showCreateForm')->name('tasks.create');
     Route::post('/folders/{id}/tasks/create', 'TaskController@create');
 
     Route::get('/folders/{id}/tasks/{task_id}/edit', 'TaskController@showEditForm')->name('tasks.edit');
     Route::post('/folders/{id}/tasks/{task_id}/edit', 'TaskController@edit');
 
-    //getの場合はtask一覧画面へ戻す
+    //タスク削除, getの場合はtask一覧画面へ戻す
     Route::get('/folders/{id}/tasks/{task_id}/delete', 'TaskController@index');
     Route::post('/folders/{id}/tasks/{task_id}/delete', 'TaskController@delete')->name('tasks.delete');
+
+    //カレンダー表示test
+    Route::get('/calendars/calendar', 'CalendarController@index')->name('calendars.index');
 
 
 });
