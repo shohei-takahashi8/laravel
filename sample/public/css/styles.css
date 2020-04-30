@@ -43,6 +43,7 @@ a.my-navbar-item:hover {
 
 .table td {
   overflow: auto;
+  white-space: nowrap;
 }
 
 
